@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-micro-01
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-server:8848
+        group: spring-cloud-demo
+      config:
+        server-addr: nacos-server:8848
+        group: spring-cloud-demo
+  config:
+    import:
+      - optional:nacos:spring-micro-01.yaml
+      - optional:nacos:datasource-config.yaml
+      - optional:nacos:logging-config.yaml
+
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group
+  service:
+    vgroup-mapping:
+      spring-micro-01-group: default
+    grouplist:
+      default: seata-server:8091
