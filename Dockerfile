@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre-alpine
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/eclipse-temurin:17-jre-alpine
 
 ADD ./spring-micro-01/target/spring-micro-01-*.jar /app.jar
 
