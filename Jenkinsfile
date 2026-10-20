@@ -1,11 +1,7 @@
 pipeline {
     agent {
-        kubernetes {
-            inheritFrom 'maven'
-            containerTemplate {
-                name 'maven'
-                image 'kubesphere/builder-maven:v3.3.1-jdk17'
-            }
+        node {
+            label 'maven'
         }
     }
 
@@ -22,30 +18,12 @@ pipeline {
         GITHUB_ACCOUNT = 'git-betsyg' // change me
         APP_NAME = 'spring-micro-01'
         SONAR_CREDENTIAL_ID = 'sonar-token'
-        MAVEN_VERSION = '3.9.9'
-        MAVEN_HOME = '/opt/apache-maven-3.9.9'
-        PATH = "/opt/apache-maven-3.9.9/bin:${env.PATH}"
     }
 
     stages {
         stage ('checkout scm') {
             steps {
                 checkout(scm)
-            }
-        }
-
-        stage('prepare toolchain') {
-            steps {
-                container('maven') {
-                    sh '''
-                        if [ ! -x "${MAVEN_HOME}/bin/mvn" ]; then
-                          curl -fsSL "https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
-                            | tar -C /opt -xz
-                        fi
-                        mvn -version
-                        java -version
-                    '''
-                }
             }
         }
 
