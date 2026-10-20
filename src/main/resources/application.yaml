@@ -7,11 +7,11 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos-server:8848
         group: spring-cloud-demo
+        server-addr: ${NACOS_SERVER_ADDR:192.168.1.205:30524}
       config:
-        server-addr: nacos-server:8848
         group: spring-cloud-demo
+        server-addr: ${NACOS_SERVER_ADDR:192.168.1.205:30524}
   config:
     import:
       - optional:nacos:spring-micro-01.yaml
