@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'jdk17'
+            label 'maven'
         }
     }
 
