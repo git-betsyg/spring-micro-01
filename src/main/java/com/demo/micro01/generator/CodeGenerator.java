@@ -37,7 +37,7 @@ public class CodeGenerator {
                 .globalConfig(builder -> builder
                         .author(AUTHOR)
                         .commentDate("yyyy-MM-dd")
-                        .outputDir(projectPath.resolve("src", "main", "java").toString())
+                        .outputDir(projectPath.resolve(Paths.get("src", "main", "java")).toString())
                 )
                 .packageConfig(builder -> builder
                         .parent(PARENT_PACKAGE)
@@ -47,7 +47,7 @@ public class CodeGenerator {
                         .serviceImpl("service.impl")
                         .pathInfo(Collections.singletonMap(
                                 OutputFile.xml,
-                                projectPath.resolve("src", "main", "resources", "mapper").toString()
+                                projectPath.resolve(Paths.get("src", "main", "resources", "mapper")).toString()
                         ))
                 )
                 .strategyConfig((scanner, builder) -> builder
