@@ -13,7 +13,12 @@ spec:
     metadata:
       labels:
         app: spring-micro-01
+      annotations:
+        # KubeSphere：YAML 工作负载需保留该注解，避免同步时丢失 imagePullSecrets
+        kubesphere.io/imagepullsecrets: '{"spring-micro-01":"dockerhub-id"}'
     spec:
+      imagePullSecrets:
+        - name: dockerhub-id
       containers:
         - name: spring-micro-01
           image: spring-micro-01:latest
