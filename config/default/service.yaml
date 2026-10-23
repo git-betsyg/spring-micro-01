@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-micro-01
+  labels:
+    app: spring-micro-01
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: spring-micro-01

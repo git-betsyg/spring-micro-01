@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-micro-01
+  labels:
+    app: spring-micro-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-micro-01
+  template:
+    metadata:
+      labels:
+        app: spring-micro-01
+    spec:
+      containers:
+        - name: spring-micro-01
+          image: spring-micro-01:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          env:
+            - name: NACOS_SERVER_ADDR
+              value: "192.168.1.205:30524"
+          livenessProbe:
+            httpGet:
+              path: /hello
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /hello
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
