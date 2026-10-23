@@ -17,7 +17,7 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'ks-devops-harbor' // change me
         GITHUB_ACCOUNT = 'git-betsyg' // change me
         APP_NAME = 'spring-micro-01'
-        SONAR_CREDENTIAL_ID = 'sonarqube'
+        SONAR_CREDENTIAL_ID = 'sonar-token'
     }
 
     stages {
